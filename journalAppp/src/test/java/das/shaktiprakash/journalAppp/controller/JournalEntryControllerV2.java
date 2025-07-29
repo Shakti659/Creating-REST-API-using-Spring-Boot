@@ -1,13 +1,19 @@
 package das.shaktiprakash.journalAppp.controller;
 
 import das.shaktiprakash.journalAppp.entity.JournalEntry;
+import das.shaktiprakash.journalAppp.service.JournalEntryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/journal")
 public class JournalEntryControllerV2 {
+
+    @Autowired
+    private JournalEntryService journalEntryService;
 
 
     @GetMapping
@@ -17,6 +23,7 @@ public class JournalEntryControllerV2 {
 
     @PostMapping
     public boolean createEntry(@RequestBody JournalEntry myEntry) {
+        journalEntryService.saveEntry(myEntry);
 
         return true;
     }
